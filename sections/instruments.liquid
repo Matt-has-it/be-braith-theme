@@ -1,0 +1,41 @@
+<section class="section fade-in">
+  <div class="container">
+    <h2 class="h2">{{ section.settings.headline }}</h2>
+    <p class="p" style="margin-top:12px">{{ section.settings.subcopy }}</p>
+
+    <div style="display:grid;gap:24px;margin-top:24px">
+      {% for block in section.blocks %}
+        <article class="card" style="padding:20px;display:grid;gap:12px">
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | image_url: width:1200 }}" alt="" style="width:100%;height:auto;border-radius:12px">
+          {% endif %}
+          <h3 class="h3">{{ block.settings.title }}</h3>
+          <p class="p" style="opacity:.9">{{ block.settings.desc }}</p>
+          {% if block.settings.link_label != blank %}
+            <a class="btn btn--ghost" href="{{ block.settings.link_url }}">{{ block.settings.link_label }}</a>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name":"Instruments of Rest",
+  "settings":[
+    {"type":"text","id":"headline","label":"Headline","default":"Instruments of rest."},
+    {"type":"text","id":"subcopy","label":"Sub-copy","default":"Every ritual deserves tools that feel timeless. Designed with care, held with trust, repeated until they become part of you."}
+  ],
+  "blocks":[
+    {"type":"tool","name":"Tool","settings":[
+      {"type":"image_picker","id":"image","label":"Image"},
+      {"type":"text","id":"title","label":"Title","default":"Weighted Wrap — Winter Edition"},
+      {"type":"text","id":"desc","label":"Short description","default":"Lighten the feel and weight of the day."},
+      {"type":"text","id":"link_label","label":"Link label","default":"Discover"},
+      {"type":"url","id":"link_url","label":"Link URL","default":"/products/weighted-wrap-winter"}
+    ]}
+  ],
+  "presets":[{"name":"Instruments of Rest","blocks":[{"type":"tool"},{"type":"tool"}]}]
+}
+{% endschema %}
