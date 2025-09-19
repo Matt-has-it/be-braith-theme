@@ -1,66 +1,21 @@
-<header>
-  <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
-  </h2>
-
-  <div class="header__menu">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-  </div>
-
-  <div class="header__icons">
-    {% if shop.customer_accounts_enabled %}
-      {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
-    {% endif %}
-
-    <a href="{{ routes.cart_url }}">
-      {% if cart.item_count > 0 %}
-        <sup>{{ cart.item_count }}</sup>
-      {% endif %}
-
-      {{ 'icon-cart.svg' | inline_asset_content }}
+<header class="section" style="padding-block:12px">
+  <div style="max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;">
+    <a href="{{ routes.root_url }}" aria-label="{{ shop.name }} — Home" style="display:flex;align-items:center">
+      {%- if settings.logo != blank -%}
+        <img src="{{ settings.logo | image_url: width:280 }}" alt="{{ shop.name }}" style="height:40px;width:auto" />
+      {%- else -%}
+        <span class="h3">{{ shop.name }}</span>
+      {%- endif -%}
     </a>
+    <nav style="display:flex;gap:24px;font-size:14px;opacity:.85">
+      <a href="{{ routes.collections_url }}">Shop</a>
+      <a href="/pages/rituals">Rituals</a>
+      <a href="/pages/about">About</a>
+      <a href="/pages/support">Support</a>
+    </nav>
   </div>
 </header>
 
-{% stylesheet %}
-  header {
-    height: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  header a {
-    position: relative;
-    text-decoration: none;
-    color: var(--color-foreground);
-  }
-  header a sup {
-    position: absolute;
-    left: 100%;
-    overflow: hidden;
-    max-width: var(--page-margin);
-  }
-  header svg {
-    width: 2rem;
-  }
-  header .header__menu,
-  header .header__icons {
-    display: flex;
-    gap: 1rem;
-  }
-{% endstylesheet %}
-
 {% schema %}
-{
-  "name": "t:general.header",
-  "settings": [
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "t:labels.menu"
-    }
-  ]
-}
+{ "name":"Header", "settings":[ { "type":"image_picker","id":"logo","label":"Logo" } ] }
 {% endschema %}
