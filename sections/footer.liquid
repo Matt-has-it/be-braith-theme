@@ -1,57 +1,12 @@
-<footer>
-  <div class="footer__copyright">
-    &copy;
-    {{ 'now' | date: '%Y' }}
-    {{ shop.name | link_to: routes.root_url }}, {{ powered_by_link }}
-  </div>
-
-  <div class="footer__links">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-  </div>
-
-  <div class="footer__payment">
-    {% if section.settings.show_payment_icons %}
-      {% for type in shop.enabled_payment_types %}
-        {{ type | payment_type_svg_tag }}
-      {% endfor %}
-    {% endif %}
+<footer style="border-top:1px solid rgba(35,58,46,.1)">
+  <div class="section" style="max-width:1100px;margin:auto;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between">
+    <p class="p" style="opacity:.7">© {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
+    <div style="display:flex;gap:20px;opacity:.85;font-size:14px">
+      <a href="/policies/privacy-policy">Privacy</a>
+      <a href="/policies/terms-of-service">Terms</a>
+      <a href="mailto:hello@bebraith.com">Contact</a>
+    </div>
   </div>
 </footer>
+{% schema %}{ "name":"Footer","settings":[] }{% endschema %}
 
-{% stylesheet %}
-  footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 2rem;
-  }
-  footer a {
-    text-decoration: none;
-    color: var(--color-foreground);
-  }
-  footer .footer__links,
-  footer .footer__payment {
-    display: flex;
-    gap: 1rem;
-  }
-{% endstylesheet %}
-
-{% schema %}
-{
-  "name": "t:general.footer",
-  "settings": [
-    {
-      "type": "link_list",
-      "id": "menu",
-      "label": "t:labels.menu"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_payment_icons",
-      "label": "t:labels.show_payment_icons",
-      "default": true
-    }
-  ]
-}
-{% endschema %}
