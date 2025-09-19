@@ -1,22 +1,25 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>{{ page_title }} · {{ shop.name }}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  {{ content_for_header }} {# Shopify scripts/pixels #}
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    {% # Inlined CSS Variables %}
+    {% render 'css-variables' %}
 
-  {%- comment -%} Web fonts to match your LP {%- endcomment -%}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Ibarra+Real+Nova:wght@400;600&display=swap" rel="stylesheet">
+    {% # Load and preload the critical CSS %}
+    {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
 
+    {% # Social, title, etc. %}
+    {% render 'meta-tags' %}
+
+    {{ content_for_header }}
+  </head>
+
+  <body>
+    {% sections 'header-group' %}
+
+    {{ content_for_layout }}
+
+    {% sections 'footer-group' %}
+  </body>
   <link rel="stylesheet" href="{{ 'base.css' | asset_url }}">
-</head>
-<body class="bb bg-beige text-forest">
-  {% section 'header' %}
-  <main id="main">{{ content_for_layout }}</main>
-  {% section 'footer' %}
-  <script src="{{ 'theme.js' | asset_url }}" defer></script>
-</body>
+<script src="{{ 'theme.js' | asset_url }}" defer></script>
 </html>
