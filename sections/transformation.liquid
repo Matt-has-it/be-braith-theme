@@ -1,0 +1,17 @@
+<section class="section fade-in">
+  <div class="container">
+    <h2 class="h2">{{ section.settings.headline }}</h2>
+    <div class="p" style="margin-top:12px;white-space:pre-line">{{ section.settings.subcopy }}</div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name":"Transformation (Societal Shift)",
+  "settings":[
+    {"type":"text","id":"headline","label":"Headline","default":"Redefining the role of rest."},
+    {"type":"textarea","id":"subcopy","label":"Sub-copy","default":"For decades, productivity has been measured in output, speed, and exhaustion.\nBut a society that undervalues rest is a society running on borrowed time.\n\nWe believe rest is not retreat.\nIt is strategy.\nIt is the hidden foundation of clarity, creativity, and strength.\n\nThe world is beginning to change.\nRest is no longer the afterthought at the edge of the day.\nIt is the core of tomorrow’s progress.\n\nBe Braith exists to lead this shift —\nto make intentional rest as aspirational as training, as essential as movement, as celebrated as achievement."}
+  ],
+  "presets":[{"name":"Transformation"}]
+}
+{% endschema %}
