@@ -1,0 +1,17 @@
+<section class="section fade-in" style="background:var(--bb-beige)">
+  <div class="container">
+    <h2 class="h2">{{ section.settings.headline }}</h2>
+    <div class="p" style="margin-top:12px;white-space:pre-line">{{ section.settings.subcopy }}</div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name":"Belief Anchor",
+  "settings":[
+    {"type":"text","id":"headline","label":"Headline","default":"Your evening shapes your tomorrow."},
+    {"type":"textarea","id":"subcopy","label":"Sub-copy","default":"Every culture has its myths.\nOne of the most damaging is that rest is passive, optional, even weak.\n\nAt Be Braith, we stand for the opposite.\nThe hours before sleep are not wasted hours.\nThey are the most decisive hours of your day.\n\nEvening is where resilience is renewed.\nEvening is where tomorrow takes root.\nWithout ritual, tomorrow falters.\nWith ritual, tomorrow strengthens."}
+  ],
+  "presets":[{"name":"Belief Anchor"}]
+}
+{% endschema %}
