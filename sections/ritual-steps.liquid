@@ -1,0 +1,27 @@
+<section class="section fade-in">
+  <div class="container">
+    <h2 class="h2">{{ section.settings.headline }}</h2>
+    <p class="p" style="margin-top:8px">{{ section.settings.intro }}</p>
+    <ul class="p" style="margin-top:16px;list-style:none;padding:0">
+      {% for block in section.blocks %}
+        <li style="margin:.5rem 0">— {{ block.settings.step }}</li>
+      {% endfor %}
+    </ul>
+    <p class="p" style="margin-top:16px;font-weight:600">{{ section.settings.outro }}</p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name":"Ritual Steps",
+  "settings":[
+    {"type":"text","id":"headline","label":"Headline","default":"Your Evening Reset."},
+    {"type":"text","id":"intro","label":"Intro","default":"Evenings are not for collapse. They are for arrival."},
+    {"type":"text","id":"outro","label":"Outro","default":"Not routine. Ritual."}
+  ],
+  "blocks":[
+    {"type":"step","name":"Step","settings":[{"type":"text","id":"step","label":"Step text","default":"Steam rises from a cup of tea."}]}
+  ],
+  "presets":[{"name":"Ritual Steps","blocks":[{"type":"step"},{"type":"step"},{"type":"step"},{"type":"step"},{"type":"step"}]}]
+}
+{% endschema %}
