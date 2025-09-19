@@ -1,0 +1,46 @@
+<section class="section fade-in">
+  <div class="container">
+    <h2 class="h2">Be Braith exists for one reason:</h2>
+    <p class="p" style="margin-top:8px">To make intentional rest a way of life. This is more than sleep. It is restoration. It is strength. It is the quiet advantage carried into every tomorrow.</p>
+    <div style="margin-top:20px">
+      <form id="klaviyo-form" data-list="{{ section.settings.klaviyo_list_id }}" style="display:flex;gap:12px;flex-wrap:wrap">
+        <input type="email" name="email" placeholder="Begin your ritual here" required class="card" style="padding:12px 14px;flex:1;min-width:240px">
+        <button class="btn">Join the Ritual Library</button>
+      </form>
+      <p id="klaviyo-error" class="p" style="margin-top:8px;display:none;opacity:.85"></p>
+    </div>
+  </div>
+</section>
+
+<script>
+document.currentScript && (()=>{
+  const form = document.getElementById('klaviyo-form');
+  if(!form) return;
+  const errorEl = document.getElementById('klaviyo-error');
+  const ENDPOINT = "https://manage.kmail-lists.com/ajax/subscriptions/subscribe";
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    errorEl && (errorEl.style.display="none");
+    const email = form.querySelector('input[type="email"]').value;
+    const list = form.dataset.list;
+    try{
+      const res = await fetch(ENDPOINT, {
+        method:"POST",
+        headers:{ "Content-Type":"application/x-www-form-urlencoded" },
+        body:new URLSearchParams({ g:list, email })
+      });
+      const data = await res.json();
+      if(data.success){ window.location.href = "/pages/thank-you"; }
+      else { if(errorEl){ errorEl.textContent="Signup failed. Please try again."; errorEl.style.display="block"; } }
+    }catch(err){ if(errorEl){ errorEl.textContent="Network error. Please try again."; errorEl.style.display="block"; } }
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name":"Final Invitation",
+  "settings":[ { "type":"text","id":"klaviyo_list_id","label":"Klaviyo List ID","default":"TaTtT5" } ],
+  "presets":[{"name":"Final Invitation"}]
+}
+{% endschema %}
