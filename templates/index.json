@@ -1,20 +1,14 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "main": {
-      "type": "hello-world",
-      "settings": {}
-    }
+    "hero": { "type": "hero-invitation" },
+    "belief": { "type": "belief-anchor" },
+    "shift": { "type": "transformation" },
+    "ritual": { "type": "ritual-steps" },
+    "tools": { "type": "instruments" },
+    "science": { "type": "science-lite" },
+    "community": { "type": "community-grid" },
+    "invite": { "type": "invitation" }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["hero","belief","shift","ritual","tools","science","community","invite"]
 }
+
